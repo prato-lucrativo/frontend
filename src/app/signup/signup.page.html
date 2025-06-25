@@ -1,0 +1,74 @@
+<ion-content class="ion-padding">
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <div class="signup-wrapper">
+      <div class="signup-container">
+        <h1>Crie sua conta</h1>
+        <p class="subtitle">Preencha os dados abaixo para se cadastrar</p>
+
+        <ion-input
+          formControlName="nome"
+          placeholder="Nome completo"
+          type="text"
+          autocapitalize="none">
+        </ion-input>
+
+        <ion-input
+          formControlName="email"
+          placeholder="Email"
+          autocomplete="email"
+          type="email"
+          autocapitalize="none">
+        </ion-input>
+<div
+  class="error-message"
+  *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched"
+  role="alert"
+>
+  <small *ngIf="signupForm.get('email')?.errors?.['required']">
+    Email é obrigatório.
+  </small>
+  <small *ngIf="signupForm.get('email')?.errors?.['email']">
+    Formato de email inválido.
+  </small>
+</div>
+        <ion-input
+          formControlName="senha"
+          placeholder="Senha"
+          type="password"
+          autocapitalize="none">
+        </ion-input>
+<div
+  class="error-message"
+  *ngIf="signupForm.get('senha')?.invalid && signupForm.get('senha')?.touched"
+  role="alert"
+>
+  <small *ngIf="signupForm.get('senha')?.errors?.['required']">Senha é obrigatória.</small>
+  <small *ngIf="signupForm.get('senha')?.errors?.['minlength']">
+    A senha deve ter no mínimo 6 caracteres.
+  </small>
+</div>
+
+        <ion-input
+          formControlName="confirmarSenha"
+          placeholder="Confirmar Senha"
+          type="password">
+        </ion-input>
+        <div
+  class="error-message"
+  *ngIf="signupForm.errors?.['senhasDiferentes'] && signupForm.touched"
+  role="alert"
+>
+  <small>As senhas não coincidem.</small>
+</div>
+
+        <ion-button expand="block" type="submit" [disabled]="isLoading">
+          {{ isLoading ? 'Cadastrando...' : 'Cadastrar' }}
+        </ion-button>
+
+        <div class="login-link">
+          Já tem conta? <a routerLink="/login">Entrar</a>
+        </div>
+      </div>
+    </div>
+  </form>
+</ion-content>

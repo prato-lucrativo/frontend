@@ -1,0 +1,57 @@
+<ion-content class="ion-padding">
+  <div class="login-wrapper">
+    <div class="login-container">
+     <img src="assets/imgs/login-logo.png" alt="Logo" class="login-logo">
+
+      <p class="subtitle">Faça login para continuar</p>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <ion-input
+          formControlName="email"
+          placeholder="Email"
+          autocomplete="email"
+          autocapitalize="none"
+          type="email"
+          fill="solid"
+          required
+        ></ion-input>
+        <div *ngIf="email?.invalid && email?.touched" class="error-message">
+          <small *ngIf="email?.errors?.['required']">Email é obrigatório.</small>
+          <small *ngIf="email?.errors?.['email']">Email inválido.</small>
+        </div>
+
+        <ion-input
+          formControlName="senha"
+          placeholder="Senha"
+          autocapitalize="none"
+          type="password"
+          fill="solid"
+          required
+        ></ion-input>
+
+        <div class="forgot-password">
+          <a (click)="esqueciSenha()">Esqueci minha senha</a>
+        </div>
+
+        <ion-button
+          expand="block"
+          type="submit"
+          [disabled]="isLoading || loginForm.invalid"
+          shape="round"
+        >
+          <ng-container *ngIf="!isLoading; else carregando">
+            Entrar
+          </ng-container>
+          <ng-template #carregando>
+            <ion-spinner name="crescent" slot="start"></ion-spinner>
+            Carregando...
+          </ng-template>
+        </ion-button>
+      </form>
+
+      <div class="signup-link">
+        Não tem conta? <a routerLink="/signup">Crie uma aqui</a>
+      </div>
+    </div>
+  </div>
+</ion-content>
