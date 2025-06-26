@@ -1,0 +1,60 @@
+ion-content {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 16px;
+  --padding-bottom: 16px;
+  background-color: #f9f9f9;
+}
+
+form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+h3 {
+  margin-top: 24px;
+  margin-bottom: 12px;
+  font-weight: 600;
+  color: #222;
+}
+
+ion-item {
+  --background: #fff;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+ion-button {
+  margin-top: 16px;
+  border-radius: 8px;
+}
+
+ion-card {
+  margin-top: 24px;
+  padding: 16px;
+  background-color: #e9ecef;
+  border-radius: 8px;
+  color: #333;
+
+  p {
+    margin: 6px 0;
+    font-weight: 500;
+  }
+}
+
+ion-list ion-item {
+  background-color: #fff;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  --padding-start: 16px;
+  --padding-end: 16px;
+}
+
+ion-list ion-item ion-label {
+  font-weight: 500;
+}
+
+ion-list ion-item ion-buttons ion-button {
+  margin-left: 8px;
+}

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
+
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
@@ -37,7 +38,7 @@ export class LoginPage implements OnInit {
     });
 
     const isAuthenticated = localStorage.getItem('auth') === 'true';
-    if (isAuthenticated) {
+    if (isAuthenticated && localStorage.getItem('nomeUsuario')) {
       this.router.navigate(['/home']);
     }
   }
@@ -74,14 +75,32 @@ export class LoginPage implements OnInit {
     const { email, senha } = this.loginForm.value;
 
     this.authService.login(email, senha).subscribe({
-      next: async (res: any) => {
+      next: async (res) => {
         this.isLoading = false;
+        console.log('Resposta do login:', res);
 
-        if (res?.success) {
+        if (res.success && res.usuario && res.usuario.nome && res.usuario.id) {
+          // Debug
+          console.log('Salvando no localStorage:', {
+            auth: 'true',
+            usuarioId: res.usuario.id,
+            nomeUsuario: res.usuario.nome,
+            token: res.token || '',
+          });
+
+          // Salvar dados
           localStorage.setItem('auth', 'true');
+          localStorage.setItem('usuarioId', res.usuario.id);
+          localStorage.setItem('nomeUsuario', res.usuario.nome);
+          localStorage.setItem('token', res.token || '');
+
+          // Exibir toast e navegar com leve atraso
           await this.presentToast('Login efetuado com sucesso!', 'success');
-          this.router.navigate(['/home']);
+          setTimeout(() => {
+            this.router.navigate(['/home']);
+          }, 100);
         } else {
+          console.warn('Usuário inválido:', res.usuario);
           await this.presentToast(res.message || 'E-mail ou senha incorretos.');
         }
       },

@@ -3,11 +3,17 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
+export interface Usuario {
+  id: string;
+  nome: string;
+  email: string;
+}
 // Interface padronizada para as respostas da API
 export interface ApiResponse {
   success: boolean;
   message?: string;
   token?: string;
+  usuario?: Usuario;
   // Adicione outros campos esperados, ex: userId?: string;
 }
 

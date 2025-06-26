@@ -3,6 +3,9 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { LoginGuard } from './login.guard';
 import { AuthGuard } from './auth.guard'; // ajuste o caminho se necessário
 import { LoginPage } from './login/login.page'; // importe o login
+import { CadastroPratoPage } from './cadastro-prato/cadastro-prato.page';
+
+
 const routes: Routes = [
   {
     path: '',
@@ -20,7 +23,11 @@ const routes: Routes = [
   {
     path: 'home',
     loadComponent: () => import('./home/home.page').then(m => m.HomePage),
-    canActivate: [AuthGuard]
+    //canActivate: [AuthGuard]
+  },
+   {
+    path: 'cadastro-prato',
+    loadComponent: () => import('./cadastro-prato/cadastro-prato.page').then(m => m.CadastroPratoPage)
   },
   {
     path: 'forgot-password',

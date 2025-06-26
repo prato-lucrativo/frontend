@@ -1,27 +1,58 @@
-#container {
+.titulo {
+ 
+  font-size: 1.2em;
+  margin-bottom: 12px;
+  
+}
+
+.card-metric {
   text-align: center;
+  background-color: #f4f4f4;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  ion-icon {
+    font-size: 2em;
+    margin-bottom: 6px;
+    color: #3880ff;
+  }
+
+  .valor {
+    font-weight: bold;
+    font-size: 1.1em;
+  }
+
+  .label {
+    color: #666;
+    font-size: 0.9em;
+  }
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.botoes {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;  /* empilha verticalmente */
+  align-items: center;     /* centraliza horizontalmente */
+  ion-button {
+    width: 200px;            /* largura fixa padrão */
+    margin-bottom: 12px;
+    font-weight: bold;
+    border-radius: 8px;
+  }
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+.botoes ion-button ion-icon {
+  color: white;
+ 
+  vertical-align: middle;
 }
 
-#container a {
-  text-decoration: none;
+.resumo-rapido {
+  max-width: 600px;     /* largura máxima do container */
+  margin-left: auto;    /* centraliza horizontalmente */
+  margin-right: auto;   /* idem */
+  padding: 16px;        /* espaçamento interno */
+  box-sizing: border-box; /* garante que padding não aumente o total da largura */
 }
+
+
