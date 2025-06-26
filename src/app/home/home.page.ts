@@ -3,6 +3,7 @@ import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AdmobService } from '../services/admob.service';  // importar serviço
 
 @Component({
   selector: 'app-home',
@@ -14,9 +15,9 @@ import { Router } from '@angular/router';
 export class HomePage {
   nomeUsuario: string = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private admob: AdmobService) {}
 
-  ionViewWillEnter() {
+  async ionViewWillEnter() {
     const isAuthenticated = localStorage.getItem('auth') === 'true';
     const nome = (localStorage.getItem('nomeUsuario') || '').trim();
 
@@ -26,6 +27,14 @@ export class HomePage {
     }
 
     this.nomeUsuario = nome;
+
+    // Mostrar banner quando entrar na Home
+    await this.admob.showBanner();
+  }
+
+  async ionViewWillLeave() {
+    // Esconder banner quando sair da Home (opcional)
+    await this.admob.hideBanner();
   }
 
   logout() {

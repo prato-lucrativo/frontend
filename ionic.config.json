@@ -1,5 +1,8 @@
 {
   "name": "prato-lucrativo",
-  "integrations": {},
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
   "type": "angular"
 }
